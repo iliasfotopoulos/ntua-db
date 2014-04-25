@@ -11,6 +11,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140425092033) do
+
+  create_table "client_phones", force: true do |t|
+    t.integer  "client_id"
+    t.string   "first_phone"
+    t.string   "second_phone"
+    t.string   "mobile"
+    t.string   "fax"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "client_phones", ["client_id"], name: "index_client_phones_on_client_id", using: :btree
+
+  create_table "clients", force: true do |t|
+    t.string   "identity"
+    t.string   "first Name"
+    t.string   "last Name"
+    t.string   "street"
+    t.integer  "street_number"
+    t.string   "zip_code"
+    t.string   "city"
+    t.string   "credit_card_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hotel_phones", force: true do |t|
+    t.integer  "hotel_id"
+    t.string   "first_phone"
+    t.string   "second_phone"
+    t.string   "mobile"
+    t.string   "fax"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hotel_phones", ["hotel_id"], name: "index_hotel_phones_on_hotel_id", using: :btree
+
+  create_table "hotels", force: true do |t|
+    t.string   "name"
+    t.string   "street"
+    t.integer  "street_number"
+    t.string   "zip_code"
+    t.string   "city"
+    t.integer  "rating"
+    t.integer  "construction_year"
+    t.integer  "renovation_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reservations", force: true do |t|
+    t.integer  "hotel_id"
+    t.integer  "room_id"
+    t.integer  "client_id"
+    t.string   "reservation_date"
+    t.string   "first_date"
+    t.string   "last_date"
+    t.string   "payment_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["client_id"], name: "index_reservations_on_client_id", using: :btree
+  add_index "reservations", ["hotel_id"], name: "index_reservations_on_hotel_id", using: :btree
+  add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
+
+  create_table "rooms", force: true do |t|
+    t.integer  "hotel_id"
+    t.string   "type"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rooms", ["hotel_id"], name: "index_rooms_on_hotel_id", using: :btree
 
 end
