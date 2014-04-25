@@ -1,0 +1,30 @@
+<div class="hotels index">
+  <h2>Hotels</h2>
+
+<%#= link_to("Add New Subject", {:action => 'new'}, :class => 'action new') %>
+	<div class="table-responsive">
+	  <table class="table table-striped table-hover" summary="Hotels list">
+	    <tr>
+	      <th>&nbsp;</th>
+	      <th>Name</th>
+	      <th>City</th>
+	      <th>Rating</th>
+	      <th>Actions</th>
+	    </tr>
+	    <% @hotels.each do |h| %>
+	    <tr>
+	      <td><%= h.id %></td>
+	      <td><%= h.name %></td>
+	      <td ><%= h.city %></td>
+	      <td ><%= h.Rating %></td>
+	      <td class="actions">
+	        <%= link_to("Show", {:action => 'show', :id => subject.id}, :class => 'action show') %>
+	        <%= link_to("Edit", {:action => 'edit', :id => subject.id}, :class => 'action edit') %>
+	        <%= link_to("Delete", {:action => 'delete', :id => subject.id}, :class => 'action delete') %>
+	      </td>
+	    </tr>
+	    <% end %>
+	  </table>
+	</div>
+	
+</div>
