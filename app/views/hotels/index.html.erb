@@ -8,7 +8,12 @@
 	      <th>&nbsp;</th>
 	      <th>Name</th>
 	      <th>City</th>
+	      <th>Street</th>
+	      <th>Street Number</th>
+	      <th>Zip Code</th>
 	      <th>Rating</th>
+	      <th>Construction Year</th>
+	      <th>Renovation Year</th>
 	      <th>Actions</th>
 	    </tr>
 	    <% @hotels.each do |h| %>
@@ -16,11 +21,16 @@
 	      <td><%= h.id %></td>
 	      <td><%= h.name %></td>
 	      <td ><%= h.city %></td>
-	      <td ><%= h.Rating %></td>
+	      <td ><%= h.street %></td>
+	      <td ><%= h.street_number %></td>
+	      <td ><%= h.zip_code %></td>
+	      <td ><%= h.rating %></td>
+	      <td ><%= h.construction_year %></td>
+	      <td ><%= h.renovation_year %></td>
 	      <td class="actions">
-	        <%= link_to("Show", {:action => 'show', :id => subject.id}, :class => 'action show') %>
-	        <%= link_to("Edit", {:action => 'edit', :id => subject.id}, :class => 'action edit') %>
-	        <%= link_to("Delete", {:action => 'delete', :id => subject.id}, :class => 'action delete') %>
+	        <%#= link_to("Show", {:action => 'show', :id => hotel.id}, :class => 'action show') %>
+	        <%#= link_to("Edit", {:action => 'edit', :id => hotel.id}, :class => 'action edit') %>
+	        <%#= link_to("Delete", {:action => 'delete', :id => hotel.id}, :class => 'action delete') %>
 	      </td>
 	    </tr>
 	    <% end %>
