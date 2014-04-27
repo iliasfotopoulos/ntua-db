@@ -12,15 +12,15 @@
 
       <%= f.number_field :street_number %>
 
-      <%= f.number_field :zip_code %>
+      <%= f.text_field :zip_code %>
 
       <%= f.number_field :rating %>
 
-      <%= f.date_field :construction_year %>
+      <%= f.number_field :construction_year %>
 
-      <%= f.date_field :renovation_year %>
+      <%= f.number_field :renovation_year %>
 
-      <%= f.submit "Create new hotel", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Add new hotel", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 

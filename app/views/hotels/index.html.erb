@@ -28,13 +28,16 @@
 	      <td ><%= h.construction_year %></td>
 	      <td ><%= h.renovation_year %></td>
 	      <td class="actions">
-	        <%= link_to("Show More", {:action => 'show', :id => h.id}, :class => 'action show') %>
-	        <%#= link_to("Edit", {:action => 'edit', :id => hotel.id}, :class => 'action edit') %>
-	        <%#= link_to("Delete", {:action => 'delete', :id => hotel.id}, :class => 'action delete') %>
+	        <%= link_to("Show More", hotel_path(h.id), :class => 'btn btn-default btn-sm') %>
+	        <%= link_to("Edit", edit_hotel_path(h.id), :class => 'btn btn-default btn-sm') %>
+	        <%#= link_to("Delete", {:action => 'delete', :id => h.id}, :class => 'btn btn-default btn-sm') %>
 	      </td>
 	    </tr>
 	    <% end %>
 	  </table>
+	</div>
+	<div class = "btn-group ">
+		<%= link_to"Add a new hotel", new_hotel_path, :class => "btn btn-primary"%>
 	</div>
 	
 </div>
