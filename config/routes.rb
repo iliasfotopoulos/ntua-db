@@ -5,7 +5,9 @@ DbProject::Application.routes.draw do
   #get "hotels/edit"
   #get "hotels/delete"
 
-  match ':controller(/:action(/:id))', :via => :get
+  resources :hotels
+
+  #match ':controller(/:action(/:id))', :via => :get
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
