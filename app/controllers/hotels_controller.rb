@@ -35,8 +35,10 @@ class HotelsController < ApplicationController
     end
   end
 
-  def delete
-   # @hotel = Hotel.find(params[:id])
+  def destroy
+    @hotel = Hotel.find(params[:id])
+    @hotel.destroy
+    redirect_to(hotels_path)
   end
 
   private
