@@ -1,4 +1,9 @@
 DbProject::Application.routes.draw do
+  #get "rooms/index"
+  #get "rooms/show"
+  #get "rooms/new"
+  #get "rooms/edit"
+  #get "rooms/delete"
   #get "hotels/index"
   #get "hotels/show"
   #get "hotels/new"

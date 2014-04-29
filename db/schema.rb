@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425092033) do
+ActiveRecord::Schema.define(version: 20140429202521) do
 
   create_table "client_phones", force: true do |t|
     t.integer  "client_id"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140425092033) do
 
   create_table "rooms", force: true do |t|
     t.integer  "hotel_id"
-    t.string   "type"
+    t.string   "room_type"
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,0 +1,21 @@
+<div class= "Edit room">
+	<h2>Edit room for Hotel: <%= @hotel.name %></h2>
+
+	<div class="">
+	    <%= bootstrap_form_for([@hotel, @room]) do |f| %>
+
+	      <%#= f.text_field :type %>
+	      <%= f.form_group :room_type, label: { text: "Type" } do %>
+			  <%= f.radio_button :room_type, "Single", label: "Single", inline: true %>
+			  <%= f.radio_button :room_type, "Double", label: "Double", inline: true %>
+			  <%= f.radio_button :room_type, "Junior Suite", label: "Junior Suite", inline: true %>
+			  <%= f.radio_button :room_type, "Suite", label: "Suite", inline: true %>
+		  <% end %>
+
+	      <%= f.number_field :price , prepend: "€", append: ".00"%>
+
+	      <%= f.submit "Edit hotel", class: "btn btn-large btn-primary" %>
+	    <% end %>
+  	</div>
+
+</div>
