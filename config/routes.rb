@@ -5,7 +5,9 @@ DbProject::Application.routes.draw do
   #get "hotels/edit"
   #get "hotels/delete"
 
-  resources :hotels
+  resources :hotels do
+    resources :rooms
+  end
 
   #match ':controller(/:action(/:id))', :via => :get
 
