@@ -1,0 +1,27 @@
+<div class= "new client">
+	<h2>Edit client: <%= "#{@client.first_name} #{@client.last_name}"%></h2>
+
+	<div class="">
+    <%= bootstrap_form_for(@client) do |f| %>
+
+      <%= f.text_field :identity %>
+
+      <%= f.text_field :first_name %>
+
+      <%= f.text_field :last_name %>
+
+      <%= f.text_field :street %>
+
+      <%= f.number_field :street_number %>
+
+      <%= f.text_field :zip_code %>
+
+      <%= f.text_field :city %>
+
+      <%= f.text_field :credit_card_number %>
+
+      <%= f.submit "Edit client", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+
+</div>

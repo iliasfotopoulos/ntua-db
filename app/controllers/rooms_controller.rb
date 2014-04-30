@@ -29,6 +29,17 @@ class RoomsController < ApplicationController
     @room = @hotel.rooms.find(params[:id])
   end
 
+  def update
+    @hotel = Hotel.find(params[:hotel_id])
+    @room = @hotel.rooms.find(params[:id])
+
+    if @room.update_attributes(room_params)
+      redirect_to(hotel_path(@hotel.id))
+    else
+      render('edit')
+    end
+  end
+
   def delete
   end
 
