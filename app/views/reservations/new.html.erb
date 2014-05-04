@@ -1,2 +1,28 @@
-<h1>Reservations#new</h1>
-<p>Find me in app/views/reservations/new.html.erb</p>
+<div class= "new reservation">
+	<h2>Add new reservation for Client: <%="#{@client.first_name}  #{@client.last_name}"%></h2>
+
+	<div class="">
+		<%= bootstrap_form_tag url: client_reservations_path do |f| %>
+			<%= f.collection_select(:hotel_id, @hotels, :id, :name) %>
+			
+			<%= f.form_group :room_type, label: { text: "Room type" } do %>
+			  <%= f.radio_button :room_type, "Single", label: "Single", inline: true %>
+			  <%= f.radio_button :room_type, "Double", label: "Double", inline: true %>
+			  <%= f.radio_button :room_type, "Junior Suite", label: "Junior Suite", inline: true %>
+			  <%= f.radio_button :room_type, "Suite", label: "Suite", inline: true %>
+			<% end %>
+			
+			<%= f.date_field :arrival_date %>
+			<%= f.date_field :departure_date %>
+
+			<%= f.submit class: "btn btn-large btn-primary", value: "Create reservation"%>
+		<% end %>
+  	</div>
+
+
+
+</div>
+<div id="debug">
+	<hr>
+	<h4>Debug</h4>
+	<%= params.inspect %> </div>

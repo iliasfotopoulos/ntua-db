@@ -21,7 +21,11 @@ DbProject::Application.routes.draw do
   #get "hotels/delete"
 
   resources :clients do
-    resources :reservations
+    resources :reservations do
+      collection do
+        post 'available_rooms'
+      end
+    end
   end
 
   resources :hotels do
