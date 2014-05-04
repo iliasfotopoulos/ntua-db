@@ -1,4 +1,9 @@
 DbProject::Application.routes.draw do
+  #get "reservations/index"
+  #get "reservations/new"
+  #get "reservations/edit"
+  #get "reservations/show"
+  #get "reservations/delete"
   #get "clients/index"
   #get "clients/show"
   #get "clients/new"
@@ -15,7 +20,9 @@ DbProject::Application.routes.draw do
   #get "hotels/edit"
   #get "hotels/delete"
 
-  resources :clients
+  resources :clients do
+    resources :reservations
+  end
 
   resources :hotels do
     resources :rooms

@@ -42,4 +42,36 @@
 	    </tr>
 	  </table>
 	</div>
+
+	<div class="span8">
+    <% if @reservations.any? %>
+	    <h3>Reservations (<%= @reservations.count %>)</h3>
+		<div class="table-responsive">
+		  <table class="table table-striped table-hover" summary="Rooms list">
+		    <tr>
+		      <th>ID</th>
+		      <th>Arrival Date</th>
+		      <th>Departure Date</th>
+		      <th>Hotel</th>
+		      <th>Actions</th>
+		    </tr>
+		    <% @reservations.each do |r| %>
+		    <tr>
+		      <td><%= r.id %></td>
+		      <td><%= r.arrival_date %></td>
+		      <td><%= r.departure_date %></td>
+		      <td><%= (Hotel.find(r.hotel_id)).name %>
+		      <td class="actions">
+		        <%#= link_to("Show More", hotel_path(h.id), :class => 'btn btn-default btn-sm') %>
+		        <%#= link_to("Edit", edit_hotel_room_path(@hotel.id,r.id), :class => 'btn btn-default btn-sm') %>
+		        <%#= link_to("Delete", hotel_room_path(@hotel.id,r.id), method: 'DELETE', data: { confirm: "Are you sure?" },  :class => 'btn btn-default btn-sm') %>
+		      </td>
+		    </tr>
+		    <% end %>
+		  </table>
+		</div>
+	<% end %>	
+	<div class = "btn-group ">
+		<%#= link_to"Add a new room", new_hotel_room_path(@hotel.id), :class => "btn btn-primary"%>
+	</div>
 </div>
