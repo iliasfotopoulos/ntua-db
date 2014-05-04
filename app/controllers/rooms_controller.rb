@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
     # Checkare me @room.save kai to parakatw ti sto diaolo ginetai
     #  @room = Room.new(room_params)
     
-    if @room
+    if @room.save
       redirect_to(hotel_path(@hotel.id))
     else
       render('new')
