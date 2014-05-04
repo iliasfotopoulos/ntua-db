@@ -24,13 +24,24 @@ class ReservationsController < ApplicationController
     @rooms = (@hotel.rooms).where("room_type = ?", params[:room_type])
 
     if @rooms.any?
-      @room = @rooms.first
-      @reservation = @client.reservations.create(reservation_params)
-      if(@reservation)
-        redirect_to(client_path(@client.id))
+      @rooms.each do |room|
+        service = ReservationService.new(room, @client, params[:arrival_date], params[:departure_date])
+        @room = room if service.room_available?
+        break if service.room_available?
+      end
+
+      if @room !=nil
+        @reservation = @client.reservations.create(reservation_params)
+        if(@reservation.save)
+          redirect_to(client_path(@client.id))
+        end
+      else
+        flash[:no_rooms] = "There are no rooms available for theese dates"
+        render('new')
       end
     else
       # Tha prepei na prostethoun validations kai minimata, xamos
+      flash[:no_rooms] = "There are no available rooms of type: #{params[:room_type]}"
       render('new') 
     end  
     
