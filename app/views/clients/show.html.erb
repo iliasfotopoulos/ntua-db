@@ -65,8 +65,8 @@
 		      <td><%= r.departure_date %></td>
 		      <td class="actions">
 		        <%= link_to("Show More", client_reservation_path(@client.id,r.id), :class => 'btn btn-default btn-sm') %>
-		        <%#= link_to("Edit", edit_hotel_room_path(@hotel.id,r.id), :class => 'btn btn-default btn-sm') %>
-		        <%#= link_to("Delete", hotel_room_path(@hotel.id,r.id), method: 'DELETE', data: { confirm: "Are you sure?" },  :class => 'btn btn-default btn-sm') %>
+		        <%= link_to("Edit", edit_client_reservation_path(@client.id,r.id), :class => 'btn btn-default btn-sm') %>
+		        <%= link_to("Delete", client_reservation_path(@client.id,r.id), method: 'DELETE', data: { confirm: "Are you sure?" },  :class => 'btn btn-default btn-sm') %>
 		      </td>
 		    </tr>
 		    <% end %>

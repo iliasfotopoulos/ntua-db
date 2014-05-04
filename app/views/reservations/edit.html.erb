@@ -1,2 +1,15 @@
-<h1>Reservations#edit</h1>
-<p>Find me in app/views/reservations/edit.html.erb</p>
+<div class= "Edit reservation">
+	<h2>Edit reservation for Client: <%="#{@client.first_name} #{@client.last_name}"%></h2>
+
+	<div class="">
+	    <%= bootstrap_form_for([@client, @reservation]) do |f| %>
+
+	      <%= f.date_field :arrival_date %>
+	      <%= f.date_field :departure_date %>
+	      <%= f.text_field :payment_type %>
+
+	      <%= f.submit "Edit Reservation", class: "btn btn-large btn-primary" %>
+	    <% end %>
+  	</div>
+
+</div>

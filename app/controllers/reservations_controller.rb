@@ -37,6 +37,19 @@ class ReservationsController < ApplicationController
   end
 
   def edit
+    @client = Client.find(params[:client_id])
+    @reservation =Reservation.find(params[:id])
+  end
+
+  def update
+    @client = Client.find(params[:client_id])
+    @reservation =Reservation.find(params[:id])
+
+    if @reservation.update_attributes(reservation_params2)
+      redirect_to(client_path(@client.id))
+    else
+      render('edit')
+    end
   end
 
   def show
@@ -51,10 +64,20 @@ class ReservationsController < ApplicationController
   def delete
   end
 
+  def destroy
+    @reservation =Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_to(client_path(params[:client_id]))
+  end
+
   private
 
   def reservation_params
     params[:room_id] = @room.id
-    params.permit(:hotel_id,:arrival_date,:departure_date,:client_id,:room_id)
+    params.permit(:hotel_id,:arrival_date,:departure_date,:client_id,:room_id,:payment_type)
+  end
+
+  def reservation_params2
+    params.require(:reservation).permit(:arrival_date,:departure_date,:payment_type)
   end
 end
