@@ -40,6 +40,12 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    @client = Client.find(params[:client_id])
+    @reservation =Reservation.find(params[:id])
+    @hotel = Hotel.find(@reservation.hotel_id)
+    @room = Room.find(@reservation.room_id)
+    @duration = (@reservation.departure_date - @reservation.arrival_date).to_i
+    @total_cost = (@duration*@room.price).to_i
   end
 
   def delete
