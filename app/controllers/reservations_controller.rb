@@ -26,8 +26,9 @@ class ReservationsController < ApplicationController
     if @rooms.any?
       @rooms.each do |room|
         service = ReservationService.new(room, @client, params[:arrival_date], params[:departure_date])
-        @room = room if service.room_available?
-        break if service.room_available?
+        available = service.room_available?
+        @room = room if available
+        break if available
       end
 
       if @room !=nil

@@ -31,12 +31,12 @@ class ReservationService
       before = (arrival_date < r.arrival_date) && ( departure_date < r.departure_date)
       after = (arrival_date > r.arrival_date) && ( departure_date > r.departure_date)
       if before || after
-        return true
-      else
         next
+      else
+        return false
       end
     end
-    return false
+    return true
   end
 
 end
