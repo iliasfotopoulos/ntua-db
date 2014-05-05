@@ -3,6 +3,9 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @hotel = Hotel.find(params[:hotel_id])
+    @room = @hotel.rooms.find(params[:id])
+    @reservations = Reservation.where("room_id = ?", @room.id).order(arrival_date: :desc)
   end
 
   def new

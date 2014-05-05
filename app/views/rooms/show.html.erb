@@ -1,2 +1,61 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<%= link_to("<< Back to Hotel", hotel_path(@hotel.id), :class => 'back-link') %>
+
+<div class="room show">
+  <h2>Show Room Details</h2>
+  	<div class="table-responsive">
+	  <table class = "table table-striped table-hover "summary="Hotel details view">
+	    <tr>
+	      <th>ID</th>
+	      <td><%= @room.id %></td>
+	    </tr>
+	    <tr>
+	      <th>Room Type</th>
+	      <td><%= @room.room_type %></td>
+	    </tr>
+	    <tr>
+	      <th>Price</th>
+	      <td><%= @room.price %></td>
+	    </tr>
+	    <tr>
+	      <th>Hotel</th>
+	      <td><%= @hotel.name %></td>
+	    </tr>
+	    <tr>
+	      <th>Created</th>
+	      <td><%= @room.created_at %></td>
+	    </tr>
+	    <tr>
+	      <th>Updated</th>
+	      <td><%= @room.updated_at %></td>
+	    </tr>
+	  </table>
+	</div>	
+</div>
+
+<div class="table-responsive">
+	<% if @reservations.any? %>
+		<h3>Reservations (<%= @reservations.count %>)</h3>
+	    <table class="table table-striped table-hover" summary="Reservations list">
+		    <tr>
+		      <th>ID</th>
+		      <th>Client</th>
+		      <th>Arrival Date</th>
+		      <th>Depatrute Date</th>
+		      <th>Actions</th>
+		    </tr>
+	    <% @reservations.each do |r| %>
+		    <tr>
+		      <td><%= r.id %></td>
+		      <td><%="#{(Client.find(r.client_id)).first_name} #{(Client.find(r.client_id)).last_name}"%></td>
+		      <td ><%= r.arrival_date %></td>
+		      <td ><%= r.departure_date %></td>
+		      <td class="actions">
+		        <%= link_to("Show More", client_reservation_path(r.client.id,r.id), :class => 'btn btn-default btn-sm') %>
+		        <%= link_to("Edit", edit_client_reservation_path(r.client.id,r.id), :class => 'btn btn-default btn-sm') %>
+		        <%= link_to("Delete", client_reservation_path(r.client.id,r.id), method: 'DELETE', data: { confirm: "Are you sure?" },  :class => 'btn btn-default btn-sm') %>
+		      </td>
+		    </tr>
+	    <% end %>
+	  	</table>
+	<% end %>  	
+</div>
