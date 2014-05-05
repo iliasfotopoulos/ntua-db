@@ -1,0 +1,105 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[LGR]{fontenc}
+\usepackage{ucs}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{greek}
+
+\usepackage{listings}
+\usepackage{textcomp}
+
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\newfontfamily\greekfont[Script=Greek]{Times New Roman}
+
+\DeclareGraphicsExtensions{.pdf, .jpg}
+
+
+%----------------------------------------------------------------------------------------
+%	LISTINGS (CODE) TEMPLATE
+%----------------------------------------------------------------------------------------
+
+\lstset
+{
+	keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+	identifierstyle=\ttfamily,
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+	showstringspaces=false,
+	basicstyle=\small,
+	numberstyle=\footnotesize,
+	numbers=left,
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=2,
+	breaklines=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	breakatwhitespace=false,
+	aboveskip={1.5\baselineskip},
+  	columns=fixed,
+  	upquote=true,
+  	extendedchars=true,
+	frame=single
+	inputencoding=utf8
+}
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+
+\center
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTION
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE Εθνικό Μετσόβιο Πολυτεχνείο}\\[1.5cm] % Name of your university/college
+\textsc{\Large Βάσεις Δεδομένων}\\[0.5cm] % Major heading such as course name
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Αναφορά Εξαμηνιαίο Project 2013-2014  }\\[0.4cm]
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[scale=0.5]{ntua_logo} 
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+\vfill
+
+Ηλίας Φωτόπουλος \\ 03109106\\
+Θανάσης Βράτιμος \\03110ΧΧΧ
+
+
+%----------------------------------------------------------------------------------------
+
+\end{titlepage}
+
+\section{Λεπτομέρειες Υλοποίησης}
+Για την κατασκευή του project έγινε χρήση των παρακάτω τεχνολογιών:
+\begin{itemize}
+  \item Ruby on Rails (Framework)
+  \item HTML \ Sass (Syntactically Awesome Style Sheets) 
+  \item Bootstrap (Sass Framework)
+  \item CoffeeScript
+  \item Git (Version Control)
+\end{itemize}
+
+Κατά την φάση του σχεδιασμού αποφασίστηκε η χρήση του RoR framework λόγω της αρχιτεκτονικής MVC που ακολουθεί αλλά και λόγω της φιλοσοφίας του Convention over Configuration (CoC) και Don't Repeat Yourself (DRY).
+
+
+
+
+\end{document}
