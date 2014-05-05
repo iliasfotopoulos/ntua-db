@@ -24,15 +24,19 @@ class ReservationService
 
   def room_available?
     reservations = Reservation.where("room_id = ?", @room.id)
-    
+    arrival_date = Date.parse @arrival
+    departure_date = Date.parse @departure
+
     reservations.each do |r|
-      if r.departure_date > @arrival.to_i
-        return false
+      before = (arrival_date < r.arrival_date) && ( departure_date < r.departure_date)
+      after = (arrival_date > r.arrival_date) && ( departure_date > r.departure_date)
+      if before || after
+        return true
       else
         next
       end
     end
-    return true
+    return false
   end
 
 end

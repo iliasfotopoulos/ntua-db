@@ -2,7 +2,9 @@
 	<h2>Add new reservation for Client: <%="#{@client.first_name}  #{@client.last_name}"%></h2>
 
 	<div class="">
-		<div class = "bg-danger alert"><%= flash[:no_rooms] %></div>
+		<% if flash[:no_rooms] != nil %>
+			<div class = "bg-danger alert"><%= flash[:no_rooms] %></div> 
+		<% end %>
 		<%= bootstrap_form_tag url: client_reservations_path do |f| %>
 			<%= f.collection_select(:hotel_id, @hotels, :id, :name) %>
 			

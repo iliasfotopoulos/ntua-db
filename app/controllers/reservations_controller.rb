@@ -36,7 +36,7 @@ class ReservationsController < ApplicationController
           redirect_to(client_path(@client.id))
         end
       else
-        flash[:no_rooms] = "There are no rooms available for theese dates"
+        flash[:no_rooms] = "There are no rooms of that type available for these dates"
         render('new')
       end
     else
