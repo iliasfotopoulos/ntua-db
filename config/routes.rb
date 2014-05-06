@@ -21,6 +21,8 @@ DbProject::Application.routes.draw do
   #get "hotels/edit"
   #get "hotels/delete"
 
+  root to: "hotels#index"
+
   resources :clients do
     resources :reservations do
       collection do
