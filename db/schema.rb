@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506151705) do
+ActiveRecord::Schema.define(version: 20140506191005) do
 
   create_table "client_phones", force: true do |t|
     t.integer  "client_id"
