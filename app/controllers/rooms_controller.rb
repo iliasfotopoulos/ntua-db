@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   def index
     @rooms = Room.all
+    @average_price = Room.average(:price)
   end
 
   def show
