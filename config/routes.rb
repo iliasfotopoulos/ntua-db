@@ -1,6 +1,7 @@
 DbProject::Application.routes.draw do
   get "upcoming_reservations/index"
   get '/reservations', to: "reservations#index"
+  get '/rooms', to: "rooms#index"
   #get "reservations/new"
   #get "reservations/edit"
   #get "reservations/show"
@@ -28,7 +29,7 @@ DbProject::Application.routes.draw do
   end
 
   resources :hotels do
-    resources :rooms
+    resources :rooms, except: :index
   end
 
   #match ':controller(/:action(/:id))', :via => :get
