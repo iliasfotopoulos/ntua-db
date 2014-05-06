@@ -22,7 +22,7 @@
 	      <td class="actions">
 	        <%= link_to("Show More", client_path(c.id), :class => 'btn btn-default btn-sm') %>
 	        <%= link_to("Edit", edit_client_path(c.id), :class => 'btn btn-default btn-sm') %>
-	        <%= link_to("Delete", client_path(c.id), method: 'DELETE', data: { confirm: "Are you sure?" },  :class => 'btn btn-default btn-sm') %>
+	        <%= link_to("Delete", client_path(c.id), method: 'DELETE', data: { confirm: "Are you sure?" },  :class => 'btn btn-sm btn-danger') %>
 	      </td>
 	    </tr>
 	    <% end %>

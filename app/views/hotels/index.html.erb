@@ -27,7 +27,7 @@
 	      <td class="actions">
 	        <%= link_to("Show More", hotel_path(h.id), :class => 'btn btn-default btn-sm') %>
 	        <%= link_to("Edit", edit_hotel_path(h.id), :class => 'btn btn-default btn-sm') %>
-	        <%= link_to("Delete", hotel_path(h.id), method: 'DELETE', data: { confirm: "Are you sure?" },  :class => 'btn btn-default btn-sm') %>
+	        <%= link_to("Delete", hotel_path(h.id), method: 'DELETE', data: { confirm: "Are you sure?" },  :class => 'btn btn-danger btn-sm') %>
 	      </td>
 	    </tr>
 	    <% end %>
