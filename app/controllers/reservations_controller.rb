@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   def index
+    @reservations = Reservation.order(:arrival_date)
   end
 
   def new
