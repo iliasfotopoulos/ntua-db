@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506095220) do
+ActiveRecord::Schema.define(version: 20140506151705) do
 
   create_table "client_phones", force: true do |t|
     t.integer  "client_id"
@@ -99,6 +99,19 @@ ActiveRecord::Schema.define(version: 20140506095220) do
     t.string   "last_name"
     t.string   "name"
     t.string   "room_type"
+  end
+
+  create_table "upcoming_reservations_updatable", id: false, force: true do |t|
+    t.integer  "id",               default: 0, null: false
+    t.integer  "hotel_id"
+    t.integer  "room_id"
+    t.integer  "client_id"
+    t.string   "reservation_date"
+    t.date     "arrival_date"
+    t.date     "departure_date"
+    t.string   "payment_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
