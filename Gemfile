@@ -32,6 +32,10 @@ gem 'bootstrap-sass', '~> 3.1.1'
 
 gem 'bootstrap_form'
 
+group :development do
+  gem "rails-erd"
+end
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
