@@ -1,0 +1,32 @@
+<div class="Upcoming Reservations index">
+  <h2>Upcoming Reservations <small>(Arrival Date > Current Date)</small></h2>
+
+  <div class = "bg-info alert">Non updatable view | Inner Join | Order by Arrival Date </div>
+
+	<div class="table-responsive">
+	  <table class="table table-striped table-hover" summary="Hotels list">
+	    <tr>
+	      <th>Reservation ID</th>
+	      <th>Client</th>
+	      <th>Hotel</th>
+	      <th>Room Type</th>
+	      <th>Arrival</th>
+	      <th>Departure</th>
+	      <th>Created</th>
+	      <th>Updated</th>
+	    </tr>
+	    <% @upcoming_reservations.each do |v| %>
+	    <tr>
+	      <td><%= v.id %></td>
+	      <td><%="#{v.first_name} #{v.last_name}" %></td>
+	      <td><%= v.name %></td>
+	      <td><%= v.room_type %></td>
+	      <td><%= v.arrival_date %></td>
+	      <td><%= v.departure_date %></td>
+	      <td><%= v.created_at %> </td>
+	      <td><%= v.updated_at %> </td>
+	    </tr>
+	    <% end %>
+	  </table>
+	</div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504115628) do
+ActiveRecord::Schema.define(version: 20140506095220) do
 
   create_table "client_phones", force: true do |t|
     t.integer  "client_id"
@@ -88,5 +88,17 @@ ActiveRecord::Schema.define(version: 20140504115628) do
   end
 
   add_index "rooms", ["hotel_id"], name: "index_rooms_on_hotel_id", using: :btree
+
+  create_table "upcoming_reservations", id: false, force: true do |t|
+    t.integer  "id",             default: 0, null: false
+    t.date     "arrival_date"
+    t.date     "departure_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "name"
+    t.string   "room_type"
+  end
 
 end
