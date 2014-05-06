@@ -1,6 +1,6 @@
 DbProject::Application.routes.draw do
   get "upcoming_reservations/index"
-  #get "reservations/index"
+  get '/reservations', to: "reservations#index"
   #get "reservations/new"
   #get "reservations/edit"
   #get "reservations/show"
@@ -24,11 +24,7 @@ DbProject::Application.routes.draw do
   root to: "hotels#index"
 
   resources :clients do
-    resources :reservations do
-      collection do
-        post 'available_rooms'
-      end
-    end
+    resources :reservations, except: :index
   end
 
   resources :hotels do
