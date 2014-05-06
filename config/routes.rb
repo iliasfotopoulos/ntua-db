@@ -1,5 +1,5 @@
 DbProject::Application.routes.draw do
-  get "upcoming_reservations/index"
+  get 'upcoming_reservations', to: 'upcoming_reservations#index' 
   get '/reservations', to: "reservations#index"
   get '/rooms', to: "rooms#index"
   #get "reservations/new"
