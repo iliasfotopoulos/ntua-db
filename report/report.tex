@@ -4,14 +4,17 @@
 \usepackage{ucs}
 
 \usepackage{polyglossia}
-\setdefaultlanguage{greek}
+%\setdefaultlanguage{greek}
 
 \usepackage{listings}
 \usepackage{textcomp}
 
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
-\newfontfamily\greekfont[Script=Greek]{Times New Roman}
+\newfontfamily\greekfont{Times New Roman}
+\setmainfont[Script=Greek]{Times New Roman}
+
+
 
 \DeclareGraphicsExtensions{.pdf, .jpg}
 
@@ -99,7 +102,53 @@
 
 Κατά την φάση του σχεδιασμού αποφασίστηκε η χρήση του RoR framework λόγω της αρχιτεκτονικής MVC που ακολουθεί αλλά και λόγω της φιλοσοφίας του Convention over Configuration (CoC) και Don't Repeat Yourself (DRY).
 
+\section{Triggers}
+Δημιουργήσαμε τα παρακάτω δύο triggers.\\
+To trigger delete hotel rooms, το οποίο πριν διαγράψει ένα ξενοδοχείο διαγράφει και όλα τα δωμάτια του. Τα δωμάτια ανήκουν στο  αδύναμο σύνολο οντοτήτων "Δωμάτιο" και εξαρτιούνται πλήρως από το ξενοδοχείο στο οποίο ανήκουν, οπότε και δεν έχει νόημα να υφίστανται αν διαγραφεί το ξενοδοχείο τους.
 
+\begin{lstlisting}[language=SQL]
+CREATE TRIGGER delete_hotel_rooms
+BEFORE DELETE ON hotels 
+FOR EACH ROW
+BEGIN
+	DELETE FROM rooms WHERE OLD.id = hotel_id;
+END
+\end{lstlisting}
+
+Παρομοίως με παραπάνω δημιουργήσαμε ένα trigger που διαγράφει όλες τις κρατήσεις ενός πελάτη πριν διαγραφεί ο πελάτης.
+
+\begin{lstlisting}[language=SQL]
+CREATE TRIGGER delete_client_reservations
+BEFORE DELETE ON clients 
+FOR EACH ROW
+BEGIN
+	DELETE FROM reservations WHERE OLD.id = client_id;
+END
+\end{lstlisting}
+
+Στο σημείο αυτό αξίζει να αναφερθεί ότι το παραπάνω θα μπορούσε να υλοποιηθεί εύκολα και μέσα από το περιβάλλον του RoR Framework (χρήση Rails ActiveRecord callbacks). Αρκεί να προστεθούν τα παρακάτω στα μοντέλα hotel και client αντίστοιχα.
+
+\begin{lstlisting}[language=Ruby]
+has_many :rooms, dependent: :destroy
+\end{lstlisting}
+
+\begin{lstlisting}[language=Ruby]
+has_many :reservations, dependent: :destroy
+\end{lstlisting}
+
+\subsection{Callback vs Trigger}
+	\textbf{Πλεονεκτήματα Callback:}
+	\begin{itemize}
+	  \item Όλη η Business Logic του μοντέλου βρίσκεται στην Rails κάτι το οποίο κάνει πιο εύκολη την συντήρηση και ανάπτυξη του.
+	  \item Εύκολο Debug
+	  \item Ο κώδικας Ruby γράφετε και διαβάζεται πιο εύκολα
+	  \item Η εφαρμογή μας δεν εξαρτάται από την υλοποίηση (και συντακτικό) της βάσης δεδομένων.
+	\end{itemize}
+	\textbf{Πλεονεκτήματα Trigger:}
+	\begin{itemize}
+	  \item Είναι πιο γρήγορο από ένα callback. (Στο callback χρειάζεται να συνδεθείς στην βάση δεδομένων, ενώ στο trigger είσαι ήδη στο layer της βάσης δεδομένων)
+	\end{itemize}
+	Βάση των παραπάνω και δεδομένου το μέγεθος της εφαρμογής το ιδανικό θα ήταν να γίνει χρήση Rails ActiveRecord callbacks.
 
 
 \end{document}
