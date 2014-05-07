@@ -3,7 +3,7 @@ def up
   	create_view = " CREATE OR REPLACE VIEW upcoming_reservations_updatable AS
   					SELECT *
   					FROM reservations
-  					WHERE arrival_date > CURDATE()
+  					WHERE departure_date > CURDATE()
   					ORDER BY arrival_date"
   	execute create_view
   end
