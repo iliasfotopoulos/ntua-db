@@ -156,7 +156,6 @@
 	ON reservations.hotel_id = hotels.id
 	GROUP BY hotels.name
 	\end{lstlisting}
-	
 	Ενώ το παρακάτω βρίσκει τον αριθμό των κρατήσεων ανά τύπο δωματίου.
 	\begin{lstlisting}[language=SQL]
 	SELECT COUNT(*) as count, rooms.room_type as room_type
@@ -166,6 +165,19 @@
 	GROUP BY rooms.room_type
 	\end{lstlisting}
 	
+	\subsection{Order By}
+	Έχει γίνει χρήση Order By στα περισσότερα ερωτήματα της εφαρμογής μας. Μερικά παραδείγματα υπάρχουν στα views που εμφανίζονται στο παρακάτω section της παρούσας αναφοράς.
+	
+	\subsection{Group By - Having}
+	Το παρακάτω ερώτημα επιστρέφει τα ξενοδοχεία που έχουν αριθμό δωματίων μεγαλύτερου του 5.
+	\begin{lstlisting}[language=SQL]
+	SELECT COUNT(*) as count, hotels.name as name
+	FROM rooms
+	INNER JOIN hotels
+	ON rooms.hotel_id = hotels.id
+	GROUP BY hotels.id
+	HAVING count > 5
+	\end{lstlisting}
 
 \section{Views}
 Δημιουργήσαμε τα παρακάτω δύο views.
