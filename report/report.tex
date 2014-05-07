@@ -103,7 +103,7 @@
 Κατά την φάση του σχεδιασμού αποφασίστηκε η χρήση του RoR framework λόγω της αρχιτεκτονικής MVC που ακολουθεί αλλά και λόγω της φιλοσοφίας του Convention over Configuration (CoC) και Don't Repeat Yourself (DRY).
 
 \section{Queries}
-	\subsection{(Join)}
+	\subsection{Join queries}
 	Γίνεται συχνή χρήση ερωτημάτων Join στην εφαρμογή μας όπως για παράδειγμα στο Reservations index:
 	\begin{lstlisting}[language=SQL]
 	SELECT reservations.id, reservations.arrival_date, reservations.departure_date, reservations.created_at, reservations.updated_at, clients.first_name, clients.last_name, hotels.name, rooms.room_type
@@ -127,6 +127,23 @@
 	ORDER BY arrival_date
 	\end{lstlisting}
 	Ενώ μπορείτε να δείτε και άλλο παράδειγμα χρήσης join στα Views που δημιουργήσαμε για την εφαρμογή.
+	
+	\subsection{Aggregate queries}
+	Στην εφαρμογή μας κάναμε κυρίως χρήση του count για να μετράμε τον αριθμό των reservations ενός πελάτη ή τον αριθμό των δωματίων ενός ξενοδοχείου.\\
+
+	Εύρεση αριθμού δωματίων ενός ξενοδοχείου:  
+	\begin{lstlisting}[language=SQL]
+	SELECT COUNT(*) 
+	FROM rooms 
+	WHERE rooms.hotel_id = hotel_id
+	\end{lstlisting}
+	
+	Εύρεση αριθμού κρατήσεων ενός πελάτη: 
+	\begin{lstlisting}[language=SQL]
+	SELECT COUNT(*) 
+	FROM reservations 
+	WHERE reservations.client_id = client_id
+	\end{lstlisting}
 	
 
 \section{Views}
