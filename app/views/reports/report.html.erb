@@ -1,0 +1,57 @@
+<h1> Various Reports </h1>
+<div class ="row">
+	<center><h2> Reservations </h2></center>
+		<div class="table-responsive col-md-4">
+			<h4>Per Hotel</h4>
+			  <table class="table table-striped table-hover" summary="Reservations per Hotel">
+			    <tr>
+			      <th>Hotel</th>
+			      <th>Count</th>
+			    </tr>
+			    <% @hotel_reservations.each do |h| %>
+			    <tr>
+			      <td><%= h[0] %></td>
+			      <td><%= h[1] %></td>
+			    </tr>
+			    <% end %>
+			  </table>
+		</div>
+
+		<div class="table-responsive col-md-4">
+			<h4>Per Room (id)</h4>
+			  <table class="table table-striped table-hover" summary="Reservations Per Room id">
+			    <tr>
+			      <th>Room id</th>
+			      <th>Hotel </th>
+			      <th>Count</th>
+			    </tr>
+			    <% @room_reservations.each do |r| %>
+			    <tr>
+			      <td><%= r[0] %></td>
+			      <td><%= Hotel.find(Room.find(r[0]).hotel_id).name %></td>
+			      <td><%= r[1] %></td>
+			    </tr>
+			    <% end %>
+			  </table>
+		</div>
+
+		<div class="table-responsive col-md-4">
+			<h4>Per Room Type</h4>
+			  <table class="table table-striped table-hover" summary="Reservations Per Room id">
+			    <tr>
+			      <th>Room id</th>
+			      <th>Count</th>
+			    </tr>
+			    <% @room_type_reservations.each do |r| %>
+			    <tr>
+			      <td><%= r[0] %></td>
+			      <td><%= r[1] %></td>
+			    </tr>
+			    <% end %>
+			  </table>
+		</div>
+</div>
+
+<div class ="row">
+	<%#= @hotel_reservations2.inspect %>
+</div>
