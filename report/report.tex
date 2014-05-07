@@ -83,7 +83,7 @@
 \vfill
 
 Ηλίας Φωτόπουλος \\ 03109106\\
-Θανάσης Βράτιμος \\03110ΧΧΧ
+Θανάσης Βράτιμος \\03110769
 
 
 %----------------------------------------------------------------------------------------
@@ -101,6 +101,33 @@
 \end{itemize}
 
 Κατά την φάση του σχεδιασμού αποφασίστηκε η χρήση του RoR framework λόγω της αρχιτεκτονικής MVC που ακολουθεί αλλά και λόγω της φιλοσοφίας του Convention over Configuration (CoC) και Don't Repeat Yourself (DRY).
+
+\section{Views}
+Δημιουργήσαμε τα παρακάτω δύο views.
+Το view upcoming reservations περιέχει όλες τις κρατήσεις για τις οποίες η μέρα άφιξης είναι μεταγενέστερη της σημερινής μέρας. Επίσης εκτελεί inner join, με τα tables: clients,hotels,rooms έτσι ώστε να εμφανίσει όνομα πελάτη, ξενοδοχείου αλλά και τον τύπο του δωματίου. Η χρησιμότητα του view είναι η παρουσίαση όλων των κρατήσεων για τις οποίες ο πελάτης δεν έχει φτάσει ακόμη.
+
+\begin{lstlisting}[language=SQL]
+CREATE OR REPLACE VIEW upcoming_reservations AS
+SELECT reservations.id, reservations.arrival_date, reservations.departure_date, reservations.created_at, reservations.updated_at, clients.first_name, clients.last_name, hotels.name, rooms.room_type
+FROM reservations
+INNER JOIN clients
+ON reservations.client_id = clients.id
+INNER JOIN hotels
+ON reservations.hotel_id = hotels.id
+INNER JOIN rooms
+ON reservations.room_id = rooms.id
+WHERE arrival_date > CURDATE()
+ORDER BY arrival_date
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=SQL]
+CREATE OR REPLACE VIEW upcoming_reservations_updatable AS
+SELECT *
+FROM reservations
+WHERE arrival_date > CURDATE()
+ORDER BY arrival_date
+\end{lstlisting}
 
 \section{Triggers}
 Δημιουργήσαμε τα παρακάτω δύο triggers.\\
