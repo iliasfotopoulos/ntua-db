@@ -103,6 +103,86 @@
 Κατά την φάση του σχεδιασμού αποφασίστηκε η χρήση του RoR framework λόγω της αρχιτεκτονικής MVC που ακολουθεί αλλά και λόγω της φιλοσοφίας του Convention over Configuration (CoC) και Don't Repeat Yourself (DRY).
 
 \section{Constraints}
+Τα constraints και η business logic της εφαρμογής μας γίνεται εξολοκλήρου μέσα στο framework της RoR (εκτός από τα 2 triggers, βλ.Section Triggers).
+Σε κάθε φόρμα για update ή edit μιας σχέσης γίνονται κάποια validations.\\
+\subsection{Hotel Validations}
+	\begin{lstlisting}[language=Ruby]
+		validates :name, :city, presence: true
+		validates :street_number, numericality: true
+		validates :rating, numericality: true, 
+		inclusion: {in: 0..5, message: "rating should be 0-5"}
+	
+		validates :construction_year, :renovation_year,
+		inclusion: { in: 1800..Date.today.year, message: "Year should be over 1800"},
+	  	allow_nil: true,
+	  	format: 
+	  	{ 
+	    	with: /(18|19|20)\d{2}/i, 
+	    	message: "should be a four-digit year"
+	  	}
+	\end{lstlisting}
+
+\subsection{Room Validations}
+	\begin{lstlisting}[language=Ruby]
+	validates :price, :room_type, presence: true
+	validates :price, numericality: {greater_than: 0}
+	\end{lstlisting}
+	
+\subsection{Client Validations}
+	\begin{lstlisting}[language=Ruby]
+	validates :identity, :first_name, :last_name, presence: true
+	validates :identity, uniqueness: {message: "This identity already exists. Identity must be unique!"}
+	validates :street_number, numericality: true
+	\end{lstlisting}
+	
+\subsection{Reservation Validations}
+	Ειδικά για τις Reservation φτιάξαμε μια Service με όνομα ReservationService, η οποία ουσιαστικά ελέγχει να δει αν ένα δωμάτιο είναι ελεύθερο κάποιες ημερομηνίες που της δίνουμε. Η βασική της λογική φαίνεται στην παρακάτω συνάρτηση:
+	
+	\begin{lstlisting}[language=Ruby]
+	  def room_available?
+	    reservations = UpcomingReservationUpdatable.where("room_id = ?", @room.id)
+	    arrival_date = Date.parse @arrival
+	    departure_date = Date.parse @departure
+	
+	    reservations.each do |r|
+	      before = (arrival_date < r.arrival_date) && ( departure_date < r.departure_date)
+	      after = (arrival_date > r.arrival_date) && ( departure_date > r.departure_date)
+	      if before || after
+	        next
+	      else
+	        return false
+	      end
+	    end
+	    return true
+	  end
+	\end{lstlisting}
+	Και τα γενικότερα validation του model Reservation:
+	\begin{lstlisting}[language=Ruby]
+		belongs_to :client
+		validates :client_id, presence: true
+	
+		belongs_to :room
+		validates :room_id, presence: true
+	
+		has_one :hotel, through: :room
+		validates :hotel_id, presence: true
+	
+		validates :arrival_date, :departure_date, presence: true
+	
+		validate :arrival_before_departure, :arrival_date_cannot_be_in_the_past, :departure_date_cannot_be_in_the_past
+	
+		def arrival_before_departure
+		    errors.add(:arrival_date, "must be before departure date") if arrival_date >= departure_date
+	  	end
+	
+	  	def arrival_date_cannot_be_in_the_past
+		    errors.add(:arrival_date, "can't be in the past") if arrival_date < Date.today
+	  	end
+	
+	  	def departure_date_cannot_be_in_the_past
+		    errors.add(:departure_date, "can't be in the past") if departure_date < Date.today
+	  	end
+	\end{lstlisting}
 
 \section{SQL Queries}
 Σε όλες τις σχέσεις δημιουργήθηκαν queries για προβολή, εισαγωγή, ενημέρωση και διαγραφή εγγραφών, τα οποία δεν περιλαμβάνονται την παρούσα αναφορά αφού δεν χρειάζονται κάποια εξήγηση.
