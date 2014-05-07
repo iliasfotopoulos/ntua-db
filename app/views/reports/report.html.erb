@@ -10,8 +10,8 @@
 			    </tr>
 			    <% @hotel_reservations.each do |h| %>
 			    <tr>
-			      <td><%= h[0] %></td>
-			      <td><%= h[1] %></td>
+			      <td><%= h.name %></td>
+			      <td><%= h.count %></td>
 			    </tr>
 			    <% end %>
 			  </table>
@@ -53,5 +53,5 @@
 </div>
 
 <div class ="row">
-	<%#= @hotel_reservations2.inspect %>
+
 </div>
