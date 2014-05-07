@@ -46,7 +46,7 @@
 	    <% @reservations.each do |r| %>
 		    <tr>
 		      <td><%= r.id %></td>
-		      <td><%="#{(Client.find(r.client_id)).first_name} #{(Client.find(r.client_id)).last_name}"%></td>
+		      <td><%="#{r.client.first_name} #{r.client.last_name}"%></td>
 		      <td ><%= r.arrival_date %></td>
 		      <td ><%= r.departure_date %></td>
 		      <td class="actions">
