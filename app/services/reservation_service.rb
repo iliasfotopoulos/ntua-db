@@ -23,7 +23,7 @@ class ReservationService
 =end
 
   def room_available?
-    reservations = Reservation.where("room_id = ?", @room.id)
+    reservations = UpcomingReservationUpdatable.where("room_id = ?", @room.id)
     arrival_date = Date.parse @arrival
     departure_date = Date.parse @departure
 
