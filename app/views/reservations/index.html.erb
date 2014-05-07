@@ -18,8 +18,8 @@
 	    <tr>
 	      <td><%= r.id %></td>
 	      <td><%= "#{client.first_name} #{client.last_name}" %></td>
-	      <td><%= (Hotel.find(r.hotel_id)).name %>
-	      <td><%= (Room.find(r.room_id)).room_type%></td>
+	      <td><%= r.hotel.name %>
+	      <td><%= r.room.room_type%></td>
 	      <td><%= r.arrival_date %></td>
 	      <td><%= r.departure_date %></td>
 	      <td class="actions">
