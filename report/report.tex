@@ -120,12 +120,18 @@ WHERE arrival_date > CURDATE()
 ORDER BY arrival_date
 \end{lstlisting}
 
+Το view upcoming reservations updatable επιτελεί τις ίδιες λειτουργίες με το παραπάνω με δύο βασικές διαφορές:
+\begin{itemize}
+  \item Δεν χρησιμοποιεί inner join για να πάρει τα names από τα άλλα tables.
+  \item Περιέχει κρατήσεις όπου η μέρα αναχώρησης (όχι άφιξης) είναι μεταγενέστερη της σημερινής
+\end{itemize}
+Το εν λόγω view παίζει σημαντικό ρόλο στην εσωτερική αρχιτεκτονική και λογική της εφαρμογής μας. Χρησιμοποιείται από το ReservationService το οποίο ελέγχει αν ένα δωμάτιο είναι διαθέσιμο για κράτηση.
 
 \begin{lstlisting}[language=SQL]
 CREATE OR REPLACE VIEW upcoming_reservations_updatable AS
 SELECT *
 FROM reservations
-WHERE arrival_date > CURDATE()
+WHERE departure_date > CURDATE()
 ORDER BY arrival_date
 \end{lstlisting}
 

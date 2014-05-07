@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.27)  6 MAY 2014 23:49
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.27)  7 MAY 2014 13:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -867,35 +867,41 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 110.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 110.
+ [1]
+Overfull \hbox (13.40204pt too wide) in paragraph at lines 126--127
+[]\EU1/TimesNewRoman(1)/m/sc/12 Περιέχει κρατήσεις όπου η μέρα αναχώρησης (όχι 
+άφιξης) είναι μεταγενέστερη
+ []
 
-Overfull \hbox (15.89044pt too wide) in paragraph at lines 129--130
+
+Overfull \hbox (15.89044pt too wide) in paragraph at lines 162--163
 []\EU1/TimesNewRoman(1)/m/sc/12 Στο σημείο αυτό αξίζει να αναφερθεί ότι το παρα
 πάνω θα μπορούσε να υλοποιηθεί
  []
 
-[1] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+[2] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2013/08/26 1.5b listings language file
 )
-Overfull \hbox (20.9497pt too wide) in paragraph at lines 149--150
+Overfull \hbox (20.9497pt too wide) in paragraph at lines 182--183
 \EU1/TimesNewRoman(1)/m/sc/12 στην βάση δεδομένων, ενώ στο trigger είσαι ήδη στ
 ο layer της βάσης δεδομένων) 
  []
 
-[2] (./report.aux)
+[3] (./report.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 17011 strings out of 493918
- 335609 string characters out of 6150563
- 408916 words of memory out of 5000000
- 20130 multiletter control sequences out of 15000+600000
+ 17024 strings out of 493918
+ 335825 string characters out of 6150563
+ 423916 words of memory out of 5000000
+ 20143 multiletter control sequences out of 15000+600000
  7601 words of font info for 55 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  53i,5n,74p,10426b,1613s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.pdf (3 pages).
+Output written on report.pdf (4 pages).
