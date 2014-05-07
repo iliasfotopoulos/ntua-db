@@ -31,6 +31,22 @@
 			    <% end %>
 			  </table>
 		</div>
+
+		<div class="table-responsive col-md-4">
+			<h4>Hotels that have more than 5 Rooms</h4>
+			  <table class="table table-striped table-hover" summary="Reservations Per Room id">
+			    <tr>
+			      <th>Hotel Name</th>
+			      <th>Count</th>
+			    </tr>
+			    <% @hotel_rooms_having.each do |r| %>
+			    <tr>
+			      <td><%= r.name %></td>
+			      <td><%= r.count %></td>
+			    </tr>
+			    <% end %>
+			  </table>
+		</div>
 </div>
 
 <div class ="row">

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.27)  7 MAY 2014 14:43
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.27)  7 MAY 2014 19:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -878,14 +878,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
+
+Overfull \hbox (3.35724pt too wide) in paragraph at lines 151--152
+[]\EU1/TimesNewRoman(1)/m/sc/12 Το παρακάτω ερώτημα βρίσκει τον αριθμό των κρατ
+ήσεων κάθε ξενοδοχειακής
+ []
+
 [2]
-Overfull \hbox (13.40204pt too wide) in paragraph at lines 170--171
+Overfull \hbox (13.40204pt too wide) in paragraph at lines 191--192
 []\EU1/TimesNewRoman(1)/m/sc/12 Περιέχει κρατήσεις όπου η μέρα αναχώρησης (όχι 
 άφιξης) είναι μεταγενέστερη
  []
 
 [3]
-Overfull \hbox (15.89044pt too wide) in paragraph at lines 206--207
+Overfull \hbox (15.89044pt too wide) in paragraph at lines 227--228
 []\EU1/TimesNewRoman(1)/m/sc/12 Στο σημείο αυτό αξίζει να αναφερθεί ότι το παρα
 πάνω θα μπορούσε να υλοποιηθεί
  []
@@ -895,13 +901,13 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2013/08/26 1.5b listings language file
-)
-Overfull \hbox (20.9497pt too wide) in paragraph at lines 226--227
+) [4]
+Overfull \hbox (20.9497pt too wide) in paragraph at lines 247--248
 \EU1/TimesNewRoman(1)/m/sc/12 στην βάση δεδομένων, ενώ στο trigger είσαι ήδη στ
 ο layer της βάσης δεδομένων) 
  []
 
-[4] [5] (./report.aux)
+[5] (./report.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -909,7 +915,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  17024 strings out of 493918
  335825 string characters out of 6150563
- 439056 words of memory out of 5000000
+ 444165 words of memory out of 5000000
  20143 multiletter control sequences out of 15000+600000
  7601 words of font info for 55 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191

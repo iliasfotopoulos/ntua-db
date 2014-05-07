@@ -145,6 +145,27 @@
 	WHERE reservations.client_id = client_id
 	\end{lstlisting}
 	
+	\subsection{Group By}
+	Στην ενότητα Reports της εφαρμογής γίνεται χρήση της εντολής Group By σε συνδυασμό με την aggregate εντολή count.
+	
+	Το παρακάτω ερώτημα βρίσκει τον αριθμό των κρατήσεων κάθε ξενοδοχειακής μονάδας.
+	\begin{lstlisting}[language=SQL]
+	SELECT COUNT(*) as count, hotels.name as name
+	FROM reservations
+	INNER JOIN hotels
+	ON reservations.hotel_id = hotels.id
+	GROUP BY hotels.name
+	\end{lstlisting}
+	
+	Ενώ το παρακάτω βρίσκει τον αριθμό των κρατήσεων ανά τύπο δωματίου.
+	\begin{lstlisting}[language=SQL]
+	SELECT COUNT(*) as count, rooms.room_type as room_type
+	FROM reservations
+	INNER JOIN rooms
+	ON reservations.room_id = rooms.id
+	GROUP BY rooms.room_type
+	\end{lstlisting}
+	
 
 \section{Views}
 Δημιουργήσαμε τα παρακάτω δύο views.

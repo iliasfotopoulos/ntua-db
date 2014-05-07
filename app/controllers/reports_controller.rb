@@ -14,6 +14,13 @@ class ReportsController < ApplicationController
 	ON reservations.room_id = rooms.id
 	GROUP BY rooms.room_type")
 
+	@hotel_rooms_having = Room.find_by_sql("SELECT COUNT(*) as count, hotels.name as name
+	FROM rooms
+	INNER JOIN hotels
+	ON rooms.hotel_id = hotels.id
+	GROUP BY hotels.id
+	HAVING count > 5")
+
 
 
   end
