@@ -9,7 +9,7 @@ def up
   end
 
   def down
-  	drop_view = "DROP VIEW IF EXISTS upcoming_reservations"
+  	drop_view = "DROP VIEW IF EXISTS upcoming_reservations_updatable"
   	execute drop_view
   end
 

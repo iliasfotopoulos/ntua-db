@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507095733) do
+ActiveRecord::Schema.define(version: 20140508115807) do
 
   create_table "client_phones", force: true do |t|
     t.integer  "client_id"
@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20140507095733) do
     t.integer  "hotel_id"
     t.integer  "room_id"
     t.integer  "client_id"
-    t.string   "reservation_date"
     t.date     "arrival_date"
     t.date     "departure_date"
     t.string   "payment_type"
@@ -102,11 +101,10 @@ ActiveRecord::Schema.define(version: 20140507095733) do
   end
 
   create_table "upcoming_reservations_updatable", id: false, force: true do |t|
-    t.integer  "id",               default: 0, null: false
+    t.integer  "id",             default: 0, null: false
     t.integer  "hotel_id"
     t.integer  "room_id"
     t.integer  "client_id"
-    t.string   "reservation_date"
     t.date     "arrival_date"
     t.date     "departure_date"
     t.string   "payment_type"
