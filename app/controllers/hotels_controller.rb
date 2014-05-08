@@ -5,7 +5,7 @@ class HotelsController < ApplicationController
 
   def show
     @hotel = Hotel.find(params[:id])
-    @rooms = @hotel.rooms
+    @rooms = @hotel.rooms.order(:price)
   end
 
   def new
