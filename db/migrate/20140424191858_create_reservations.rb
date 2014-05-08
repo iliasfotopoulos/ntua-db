@@ -5,7 +5,6 @@ class CreateReservations < ActiveRecord::Migration
     	t.references :hotel #foreign keys
     	t.references :room
     	t.references :client
-    	t.string "reservation_date"
     	t.string "first_date"
     	t.string "last_date"
     	t.string "payment_type"
