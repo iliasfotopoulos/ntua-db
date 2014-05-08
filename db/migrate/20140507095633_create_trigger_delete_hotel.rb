@@ -7,6 +7,7 @@ class CreateTriggerDeleteHotel < ActiveRecord::Migration
         delete_rooms_function ="CREATE FUNCTION delete_rooms() RETURNS TRIGGER AS $_$
         BEGIN
             DELETE FROM rooms WHERE OLD.id = hotel_id;
+        RETURN NULL;
         END $_$ LANGUAGE 'plpgsql';"
 
     execute delete_rooms_function    

@@ -128,7 +128,7 @@ inclusion: { in: 1800..Date.today.year, message: "Year should be over 1800"},
 
 \subsection{Room Validations}
 	\begin{lstlisting}[language=Ruby]
-validates :price, :room_type, presence: true
+validates :price, :room_type, :hotel_id, presence: true
 validates :price, numericality: {greater_than: 0}
 	\end{lstlisting}
 	
@@ -238,19 +238,27 @@ WHERE reservations.client_id = client_id
 	
 	Το παρακάτω ερώτημα βρίσκει τον αριθμό των κρατήσεων κάθε ξενοδοχειακής μονάδας.
 	\begin{lstlisting}[language=SQL]
-SELECT COUNT(*) as count, hotels.name as name
-FROM reservations
-INNER JOIN hotels
-ON reservations.hotel_id = hotels.id
-GROUP BY hotels.name
+SELECT COUNT(reservations.id) AS count, hotels.name AS name
+	FROM 
+		reservations
+	INNER JOIN 
+		hotels
+	ON 
+		reservations.hotel_id = hotels.id
+	GROUP BY 
+		hotels.id
 	\end{lstlisting}
 	Ενώ το παρακάτω βρίσκει τον αριθμό των κρατήσεων ανά τύπο δωματίου.
 	\begin{lstlisting}[language=SQL]
-SELECT COUNT(*) as count, rooms.room_type as room_type
-FROM reservations
-INNER JOIN rooms
-ON reservations.room_id = rooms.id
-GROUP BY rooms.room_type
+SELECT COUNT(reservations.id) AS count, rooms.room_type AS room_type
+	FROM 
+		reservations
+	INNER JOIN 
+		rooms
+	ON 
+		reservations.room_id = rooms.id
+	GROUP BY 
+		rooms.room_type
 	\end{lstlisting}
 	
 	\subsection{Order By}
@@ -259,12 +267,17 @@ GROUP BY rooms.room_type
 	\subsection{Group By - Having}
 	Το παρακάτω ερώτημα επιστρέφει τα ξενοδοχεία που έχουν αριθμό δωματίων μεγαλύτερου του 5.
 	\begin{lstlisting}[language=SQL]
-SELECT COUNT(*) as count, hotels.name as name
-FROM rooms
-INNER JOIN hotels
-ON rooms.hotel_id = hotels.id
-GROUP BY hotels.id
-HAVING count > 5
+SELECT COUNT(rooms.id) AS count, hotels.name AS name
+	FROM 
+		rooms
+	INNER JOIN 
+		hotels
+	ON 
+		rooms.hotel_id = hotels.id
+	GROUP BY 
+		hotels.id
+	HAVING 
+		COUNT(rooms.id) > 5
 	\end{lstlisting}
 
 \section{Views}
@@ -305,23 +318,27 @@ ORDER BY arrival_date
 To trigger delete hotel rooms, το οποίο πριν διαγράψει ένα ξενοδοχείο διαγράφει και όλα τα δωμάτια του. Τα δωμάτια ανήκουν στο  αδύναμο σύνολο οντοτήτων "Δωμάτιο" και εξαρτιούνται πλήρως από το ξενοδοχείο στο οποίο ανήκουν, οπότε και δεν έχει νόημα να υφίστανται αν διαγραφεί το ξενοδοχείο τους.
 
 \begin{lstlisting}[language=SQL]
+CREATE FUNCTION delete_rooms() RETURNS TRIGGER AS $_$
+        BEGIN
+            DELETE FROM rooms WHERE OLD.id = hotel_id;
+        END $_$ LANGUAGE 'plpgsql';
+        
 CREATE TRIGGER delete_hotel_rooms
-BEFORE DELETE ON hotels 
-FOR EACH ROW
-BEGIN
-	DELETE FROM rooms WHERE OLD.id = hotel_id;
-END
+  			BEFORE DELETE ON hotels 
+  			FOR EACH ROW EXECUTE PROCEDURE delete_rooms() 
 \end{lstlisting}
 
 Παρομοίως με παραπάνω δημιουργήσαμε ένα trigger που διαγράφει όλες τις κρατήσεις ενός πελάτη πριν διαγραφεί ο πελάτης.
 
 \begin{lstlisting}[language=SQL]
+CREATE FUNCTION delete_reservations() RETURNS TRIGGER AS $_$
+        BEGIN
+            DELETE FROM reservations WHERE OLD.id = client_id;
+        END $_$ LANGUAGE 'plpgsql'
+        
 CREATE TRIGGER delete_client_reservations
-BEFORE DELETE ON clients 
-FOR EACH ROW
-BEGIN
-	DELETE FROM reservations WHERE OLD.id = client_id;
-END
+  			BEFORE DELETE ON clients
+  			FOR EACH ROW EXECUTE PROCEDURE delete_reservations()       
 \end{lstlisting}
 
 Στο σημείο αυτό αξίζει να αναφερθεί ότι το παραπάνω θα μπορούσε να υλοποιηθεί εύκολα και μέσα από το περιβάλλον του RoR Framework (χρήση Rails ActiveRecord callbacks). Αρκεί να προστεθούν τα παρακάτω στα μοντέλα hotel και client αντίστοιχα.

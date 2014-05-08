@@ -7,6 +7,7 @@ class CreateTriggerDeleteReservations < ActiveRecord::Migration
     delete_reservations_function ="CREATE FUNCTION delete_reservations() RETURNS TRIGGER AS $_$
         BEGIN
             DELETE FROM reservations WHERE OLD.id = client_id;
+        RETURN NULL;
         END $_$ LANGUAGE 'plpgsql'"
 
     execute delete_reservations_function   
