@@ -105,7 +105,7 @@
 
 \section{Constraints}
 Τα constraints και η business logic της εφαρμογής μας γίνεται εξολοκλήρου μέσα στο framework της RoR (εκτός από τα 2 triggers, βλ.Section Triggers).
-Σε κάθε φόρμα για update ή edit μιας σχέσης γίνονται κάποια validations.\\
+Σε κάθε φόρμα για update ή edit μιας σχέσης γίνονται κάποια validations. Έτσι ώστε να εξασφαλιστεί data integrity στην βάση δεδομένων μας.\\
 \subsection{Hotel Validations}
 	\begin{lstlisting}[language=Ruby]
 validates :name, :city, presence: true
