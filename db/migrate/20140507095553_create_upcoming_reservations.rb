@@ -9,7 +9,7 @@ class CreateUpcomingReservations < ActiveRecord::Migration
             ON reservations.hotel_id = hotels.id
             INNER JOIN rooms
             ON reservations.room_id = rooms.id
-  					WHERE arrival_date > current_date()
+  					WHERE arrival_date > current_date
   					ORDER BY arrival_date"
   	execute create_view
   end
