@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.27)  9 MAY 2014 00:34
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2014.4.27)  9 MAY 2014 01:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -858,94 +858,113 @@ File: ntua_logo.jpg Graphic file (type QTm)
 <use  "ntua_logo.jpg" > [1
 
 ]
-File: ER.jpg Graphic file (type QTm)
- <use  "ER.jpg" >
-Underfull \hbox (badness 10000) in paragraph at lines 110--112
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 113.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 113.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 113.
+
+Overfull \hbox (24.03967pt too wide) in paragraph at lines 113--117
+[]\EU1/TimesNewRoman(1)/m/sc/12 Έτσι το project αναλύθηκε σε $[]$, οπου εμπεριέ
+χεται όλη η λογική επικοινωνίας
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--117
 
  []
 
-[1] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: ER.jpg Graphic file (type QTm)
+<use  "ER.jpg" > [1]
+Overfull \hbox (35.05273pt too wide) in paragraph at lines 132--133
+\EU1/TimesNewRoman(1)/m/sc/12 Υπάρχουν πολλοί διαφορετικοί τρόποι που με τους ο
+ποίους μπορούσαμε να εφαρμόσουμε
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
+
+ []
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2013/08/26 1.5b listings language file
-)
-LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 114
+) [2]
+LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 142
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/euenc/eu1lmtt.fd
 File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 114.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 114.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 114.
+(Font)              <10.95> on input line 142.
 LaTeX Font Info:    Font shape `EU1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `EU1/lmtt/b/n' tried instead on input line 114.
+(Font)              Font shape `EU1/lmtt/b/n' tried instead on input line 142.
 
-Overfull \hbox (9.69531pt too wide) in paragraph at lines 143--144
+Overfull \hbox (9.69531pt too wide) in paragraph at lines 171--172
 \EU1/TimesNewRoman(1)/m/sc/12 οποία ουσιαστικά ελέγχει να δει αν ένα δωμάτιο εί
 ναι ελεύθερο κάποιες ημερομηνίες
  []
 
-[2] [3] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+[3] [4] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
-[4]
-Overfull \hbox (24.13477pt too wide) in paragraph at lines 217--218
+[5]
+Overfull \hbox (24.13477pt too wide) in paragraph at lines 245--246
 \EU1/TimesNewRoman(1)/m/sc/12 Ενώ μπορείτε να δείτε και άλλο παράδειγμα χρήσης 
 join στα Views που δημιουργήσαμε
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 220--221
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
 
  []
 
 
-Overfull \hbox (3.35724pt too wide) in paragraph at lines 239--240
+Overfull \hbox (3.35724pt too wide) in paragraph at lines 267--268
 []\EU1/TimesNewRoman(1)/m/sc/12 Το παρακάτω ερώτημα βρίσκει τον αριθμό των κρατ
 ήσεων κάθε ξενοδοχειακής
  []
 
-[5]
-Overfull \hbox (9.53972pt too wide) in paragraph at lines 265--266
+[6]
+Overfull \hbox (9.53972pt too wide) in paragraph at lines 293--294
 \EU1/TimesNewRoman(1)/m/sc/12 Έχει γίνει χρήση Order By στα περισσότερα ερωτήμα
 τα της εφαρμογής μας. Μερικά
  []
 
-[6]
-Overfull \hbox (13.40204pt too wide) in paragraph at lines 304--305
+[7]
+Overfull \hbox (13.40204pt too wide) in paragraph at lines 332--333
 []\EU1/TimesNewRoman(1)/m/sc/12 Περιέχει κρατήσεις όπου η μέρα αναχώρησης (όχι 
 άφιξης) είναι μεταγενέστερη
  []
 
-[7]
-Overfull \hbox (15.89044pt too wide) in paragraph at lines 346--347
+[8]
+Overfull \hbox (15.89044pt too wide) in paragraph at lines 374--375
 []\EU1/TimesNewRoman(1)/m/sc/12 Στο σημείο αυτό αξίζει να αναφερθεί ότι το παρα
 πάνω θα μπορούσε να υλοποιηθεί
  []
 
-[8]
-Overfull \hbox (20.9497pt too wide) in paragraph at lines 366--367
+[9]
+Overfull \hbox (20.9497pt too wide) in paragraph at lines 395--396
 \EU1/TimesNewRoman(1)/m/sc/12 στην βάση δεδομένων, ενώ στο trigger είσαι ήδη στ
 ο layer της βάσης δεδομένων) 
  []
 
-(./indexes.sql [9]) (./db.sql [10] [11] [12]) [13] (./report.aux)
+(./indexes.sql) [10] (./db.sql [11] [12] [13]) [14] (./report.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 17176 strings out of 493918
- 338095 string characters out of 6150563
- 471572 words of memory out of 5000000
- 20283 multiletter control sequences out of 15000+600000
- 7601 words of font info for 55 fonts, out of 8000000 for 9000
+ 17180 strings out of 493918
+ 338146 string characters out of 6150563
+ 470907 words of memory out of 5000000
+ 20286 multiletter control sequences out of 15000+600000
+ 8216 words of font info for 57 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 53i,6n,74p,10426b,1727s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,6n,74p,10426b,1737s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.pdf (14 pages).
+Output written on report.pdf (15 pages).

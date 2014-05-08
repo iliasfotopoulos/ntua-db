@@ -99,15 +99,43 @@
   \item Bootstrap (Sass Framework)
   \item CoffeeScript
   \item Git (Version Control)
+  \item PostgreSQL
+  \item Heroku
 \end{itemize}
 
-Κατά την φάση του σχεδιασμού αποφασίστηκε η χρήση του RoR framework λόγω της αρχιτεκτονικής MVC που ακολουθεί αλλά και λόγω της φιλοσοφίας του Convention over Configuration (CoC) και Don't Repeat Yourself (DRY).
+Κατά την φάση του σχεδιασμού αποφασίστηκε η χρήση του RoR framework λόγω των παρακάτω χαρακτηριστικών της:
+\begin{itemize}
+  \item Αρχιτεκτονική MVC
+  \item Convention over Configuration (CoC)
+  \item REST (Representational state transfer)
+\end{itemize}
+
+Έτσι το project αναλύθηκε σε \underline{models}, οπου εμπεριέχεται όλη η λογική
+επικοινωνίας με τη βάση, \underline{views}, όπου γίνεται η παραγωγή της διεπαφής
+με το χρήστη, και \underline{controllers}, όπου αποφασίζεται ποιο view και model
+θα κληθεί, και υλοποιεί τη σωστή επικοινωνία μεταξύ τους.\\
+
+Με τον τρόπο αυτό, καθίσταται ευκολότερη και ταχύτερη η ανάπτυξη και η
+αποσφαλμάτωση του λογισμικού, ενώ ο κώδικας είναι πιο ευέλικτος, αφού
+αποκρύπτονται οι λεπτομέρειες υλοποίησης μεταξύ των συνιστωσών (αγνωστικό
+μοντέλο - αποσύνδεση)
 
 \section{Relational model}
 \includegraphics[scale=0.7]{ER} 
 
 \section{Constraints}
-Τα constraints και η business logic της εφαρμογής μας γίνεται εξολοκλήρου μέσα στο framework της RoR (εκτός από τα 2 triggers, βλ.Section Triggers).
+Χρησιμοποιήσαμε περιορισμούς σε επίπεδο model διότι:
+\begin{itemize}
+	\item Είναι Database Agnostic
+	\item Γράφονται, διαβάζονται, συντηρούνται εύκολα
+\end{itemize}
+Υπάρχουν πολλοί διαφορετικοί τρόποι που με τους οποίους μπορούσαμε να εφαρμόσουμε constraints και validations στην εφαρμογή μας μερικοί από τους οποίους είναι οι παρακάτω:
+\begin{itemize}
+	\item Database Constaints (Υποστηρίζονται από την PostgreSQL)
+	\item Client-side validations
+	\item Controller-level validations
+\end{itemize}
+
 Σε κάθε φόρμα για update ή edit μιας σχέσης γίνονται κάποια validations. Έτσι ώστε να εξασφαλιστεί data integrity στην βάση δεδομένων μας.\\
 \subsection{Hotel Validations}
 	\begin{lstlisting}[language=Ruby]
@@ -360,12 +388,13 @@ has_many :reservations, dependent: :destroy
 	  \item Εύκολο Debug
 	  \item Ο κώδικας Ruby γράφετε και διαβάζεται πιο εύκολα
 	  \item Η εφαρμογή μας δεν εξαρτάται από την υλοποίηση (και συντακτικό) της βάσης δεδομένων.
+	  \item Database Agnostic
 	\end{itemize}
 	\textbf{Πλεονεκτήματα Trigger:}
 	\begin{itemize}
 	  \item Είναι πιο γρήγορο από ένα callback. (Στο callback χρειάζεται να συνδεθείς στην βάση δεδομένων, ενώ στο trigger είσαι ήδη στο layer της βάσης δεδομένων)
 	\end{itemize}
-	Βάση των παραπάνω και δεδομένου το μέγεθος της εφαρμογής το ιδανικό θα ήταν να γίνει χρήση Rails ActiveRecord callbacks.
+	Βάση των παραπάνω και δεδομένου το μέγεθος της εφαρμογής το ιδανικό θα ήταν να γίνει χρήση Rails ActiveRecord callbacks.	
 
 \section{Ευρετήρια}
 Δημιουργήσαμε ευρετήρια στα foreign keys.
