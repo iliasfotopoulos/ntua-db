@@ -1,7 +1,7 @@
 class CreateTriggerDeleteReservations < ActiveRecord::Migration
   def up
   	create_trigger = "CREATE TRIGGER delete_client_reservations
-  			BEFORE DELETE ON clients
+  			AFTER DELETE ON clients
   			FOR EACH ROW EXECUTE PROCEDURE delete_reservations()"
 
     delete_reservations_function ="CREATE FUNCTION delete_reservations() RETURNS TRIGGER AS $_$
