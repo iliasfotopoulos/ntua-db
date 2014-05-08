@@ -8,6 +8,7 @@
 
 \usepackage{listings}
 \usepackage{textcomp}
+\usepackage{color}
 
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
@@ -107,81 +108,81 @@
 Σε κάθε φόρμα για update ή edit μιας σχέσης γίνονται κάποια validations.\\
 \subsection{Hotel Validations}
 	\begin{lstlisting}[language=Ruby]
-		validates :name, :city, presence: true
-		validates :street_number, numericality: true
-		validates :rating, numericality: true, 
-		inclusion: {in: 0..5, message: "rating should be 0-5"}
-	
-		validates :construction_year, :renovation_year,
-		inclusion: { in: 1800..Date.today.year, message: "Year should be over 1800"},
-	  	allow_nil: true,
-	  	format: 
-	  	{ 
-	    	with: /(18|19|20)\d{2}/i, 
-	    	message: "should be a four-digit year"
-	  	}
+validates :name, :city, presence: true
+validates :street_number, numericality: true
+validates :rating, numericality: true, 
+inclusion: {in: 0..5, message: "rating should be 0-5"}
+
+validates :construction_year, :renovation_year,
+inclusion: { in: 1800..Date.today.year, message: "Year should be over 1800"},
+ 	allow_nil: true,
+ 	format: 
+ 	{ 
+   	with: /(18|19|20)\d{2}/i, 
+   	message: "should be a four-digit year"
+ 	}
 	\end{lstlisting}
 
 \subsection{Room Validations}
 	\begin{lstlisting}[language=Ruby]
-	validates :price, :room_type, presence: true
-	validates :price, numericality: {greater_than: 0}
+validates :price, :room_type, presence: true
+validates :price, numericality: {greater_than: 0}
 	\end{lstlisting}
 	
 \subsection{Client Validations}
 	\begin{lstlisting}[language=Ruby]
-	validates :identity, :first_name, :last_name, presence: true
-	validates :identity, uniqueness: {message: "This identity already exists. Identity must be unique!"}
-	validates :street_number, numericality: true
+validates :identity, :first_name, :last_name, presence: true
+validates :identity, uniqueness: {message: "This identity already exists. Identity must be unique!"}
+validates :street_number, numericality: true
 	\end{lstlisting}
 	
 \subsection{Reservation Validations}
 	Ειδικά για τις Reservation φτιάξαμε μια Service με όνομα ReservationService, η οποία ουσιαστικά ελέγχει να δει αν ένα δωμάτιο είναι ελεύθερο κάποιες ημερομηνίες που της δίνουμε. Η βασική της λογική φαίνεται στην παρακάτω συνάρτηση:
 	
 	\begin{lstlisting}[language=Ruby]
-	  def room_available?
-	    reservations = UpcomingReservationUpdatable.where("room_id = ?", @room.id)
-	    arrival_date = Date.parse @arrival
-	    departure_date = Date.parse @departure
-	
-	    reservations.each do |r|
-	      before = (arrival_date < r.arrival_date) && ( departure_date < r.departure_date)
-	      after = (arrival_date > r.arrival_date) && ( departure_date > r.departure_date)
-	      if before || after
-	        next
-	      else
-	        return false
-	      end
-	    end
-	    return true
-	  end
+def room_available?
+ reservations = UpcomingReservationUpdatable.where("room_id = ?", @room.id)
+ arrival_date = Date.parse @arrival
+ departure_date = Date.parse @departure
+
+ reservations.each do |r|
+   before = (arrival_date < r.arrival_date) && ( departure_date < r.departure_date)
+   after = (arrival_date > r.arrival_date) && ( departure_date > r.departure_date)
+   if before || after
+     next
+   else
+     return false
+   end
+ end
+ return true
+end
 	\end{lstlisting}
 	Και τα γενικότερα validation του model Reservation:
 	\begin{lstlisting}[language=Ruby]
-		belongs_to :client
-		validates :client_id, presence: true
-	
-		belongs_to :room
-		validates :room_id, presence: true
-	
-		has_one :hotel, through: :room
-		validates :hotel_id, presence: true
-	
-		validates :arrival_date, :departure_date, presence: true
-	
-		validate :arrival_before_departure, :arrival_date_cannot_be_in_the_past, :departure_date_cannot_be_in_the_past
-	
-		def arrival_before_departure
-		    errors.add(:arrival_date, "must be before departure date") if arrival_date >= departure_date
-	  	end
-	
-	  	def arrival_date_cannot_be_in_the_past
-		    errors.add(:arrival_date, "can't be in the past") if arrival_date < Date.today
-	  	end
-	
-	  	def departure_date_cannot_be_in_the_past
-		    errors.add(:departure_date, "can't be in the past") if departure_date < Date.today
-	  	end
+belongs_to :client
+validates :client_id, presence: true
+
+belongs_to :room
+validates :room_id, presence: true
+
+has_one :hotel, through: :room
+validates :hotel_id, presence: true
+
+validates :arrival_date, :departure_date, presence: true
+
+validate :arrival_before_departure, :arrival_date_cannot_be_in_the_past, :departure_date_cannot_be_in_the_past
+
+def arrival_before_departure
+errors.add(:arrival_date, "must be before departure date") if arrival_date >= departure_date
+ 	end
+
+ 	def arrival_date_cannot_be_in_the_past
+errors.add(:arrival_date, "can't be in the past") if arrival_date < Date.today
+ 	end
+
+ 	def departure_date_cannot_be_in_the_past
+errors.add(:departure_date, "can't be in the past") if departure_date < Date.today
+ 	end
 	\end{lstlisting}
 
 \section{SQL Queries}
@@ -190,25 +191,25 @@
 	\subsection{Join queries}
 	Γίνεται συχνή χρήση ερωτημάτων Join στην εφαρμογή μας όπως για παράδειγμα στο Reservations index:
 	\begin{lstlisting}[language=SQL]
-	SELECT reservations.id, reservations.arrival_date, reservations.departure_date, reservations.created_at, reservations.updated_at, clients.first_name, clients.last_name, hotels.name, rooms.room_type
-	FROM reservations
-	INNER JOIN clients
-	ON reservations.client_id = clients.id
-	INNER JOIN hotels
-	ON reservations.hotel_id = hotels.id
-	INNER JOIN rooms
-	ON reservations.room_id = rooms.id
-	ORDER BY arrival_date
+SELECT reservations.id, reservations.arrival_date, reservations.departure_date, reservations.created_at, reservations.updated_at, clients.first_name, clients.last_name, hotels.name, rooms.room_type
+FROM reservations
+INNER JOIN clients
+ON reservations.client_id = clients.id
+INNER JOIN hotels
+ON reservations.hotel_id = hotels.id
+INNER JOIN rooms
+ON reservations.room_id = rooms.id
+ORDER BY arrival_date
 	\end{lstlisting}
 	Άλλο ένα παράδειγμα χρήσης Join είναι στο show client, όπου εμφανίζονται και οι reservations του κάθε πελάτη:
 	\begin{lstlisting}[language=SQL]
-	SELECT reservations.id, reservations.arrival_date, reservations.departure_date, reservations.created_at, reservations.updated_at, hotels.name, rooms.room_type
-	FROM reservations
-	INNER JOIN hotels
-	ON reservations.hotel_id = hotels.id
-	INNER JOIN rooms
-	ON reservations.room_id = rooms.id
-	ORDER BY arrival_date
+SELECT reservations.id, reservations.arrival_date, reservations.departure_date, reservations.created_at, reservations.updated_at, hotels.name, rooms.room_type
+FROM reservations
+INNER JOIN hotels
+ON reservations.hotel_id = hotels.id
+INNER JOIN rooms
+ON reservations.room_id = rooms.id
+ORDER BY arrival_date
 	\end{lstlisting}
 	Ενώ μπορείτε να δείτε και άλλο παράδειγμα χρήσης join στα Views που δημιουργήσαμε για την εφαρμογή.
 	
@@ -217,16 +218,16 @@
 
 	Εύρεση αριθμού δωματίων ενός ξενοδοχείου:  
 	\begin{lstlisting}[language=SQL]
-	SELECT COUNT(*) 
-	FROM rooms 
-	WHERE rooms.hotel_id = hotel_id
+SELECT COUNT(*) 
+FROM rooms 
+WHERE rooms.hotel_id = hotel_id
 	\end{lstlisting}
 	
 	Εύρεση αριθμού κρατήσεων ενός πελάτη: 
 	\begin{lstlisting}[language=SQL]
-	SELECT COUNT(*) 
-	FROM reservations 
-	WHERE reservations.client_id = client_id
+SELECT COUNT(*) 
+FROM reservations 
+WHERE reservations.client_id = client_id
 	\end{lstlisting}
 	
 	\subsection{Group By}
@@ -234,19 +235,19 @@
 	
 	Το παρακάτω ερώτημα βρίσκει τον αριθμό των κρατήσεων κάθε ξενοδοχειακής μονάδας.
 	\begin{lstlisting}[language=SQL]
-	SELECT COUNT(*) as count, hotels.name as name
-	FROM reservations
-	INNER JOIN hotels
-	ON reservations.hotel_id = hotels.id
-	GROUP BY hotels.name
+SELECT COUNT(*) as count, hotels.name as name
+FROM reservations
+INNER JOIN hotels
+ON reservations.hotel_id = hotels.id
+GROUP BY hotels.name
 	\end{lstlisting}
 	Ενώ το παρακάτω βρίσκει τον αριθμό των κρατήσεων ανά τύπο δωματίου.
 	\begin{lstlisting}[language=SQL]
-	SELECT COUNT(*) as count, rooms.room_type as room_type
-	FROM reservations
-	INNER JOIN rooms
-	ON reservations.room_id = rooms.id
-	GROUP BY rooms.room_type
+SELECT COUNT(*) as count, rooms.room_type as room_type
+FROM reservations
+INNER JOIN rooms
+ON reservations.room_id = rooms.id
+GROUP BY rooms.room_type
 	\end{lstlisting}
 	
 	\subsection{Order By}
@@ -255,12 +256,12 @@
 	\subsection{Group By - Having}
 	Το παρακάτω ερώτημα επιστρέφει τα ξενοδοχεία που έχουν αριθμό δωματίων μεγαλύτερου του 5.
 	\begin{lstlisting}[language=SQL]
-	SELECT COUNT(*) as count, hotels.name as name
-	FROM rooms
-	INNER JOIN hotels
-	ON rooms.hotel_id = hotels.id
-	GROUP BY hotels.id
-	HAVING count > 5
+SELECT COUNT(*) as count, hotels.name as name
+FROM rooms
+INNER JOIN hotels
+ON rooms.hotel_id = hotels.id
+GROUP BY hotels.id
+HAVING count > 5
 	\end{lstlisting}
 
 \section{Views}
