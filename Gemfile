@@ -4,7 +4,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.4'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+# gem 'mysql2'
+
+# Use pg as the database for Active Record
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -32,8 +35,8 @@ gem 'bootstrap-sass', '~> 3.1.1'
 
 gem 'bootstrap_form'
 
+
 group :production do
-  gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
 
